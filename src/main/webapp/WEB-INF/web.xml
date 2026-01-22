@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://java.sun.com/xml/ns/javaee"
-         version="3.0">
+<web-app 
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+    version="3.0">
 
-    <!-- 로그인 -->
+    <!-- ================================================= -->
+    <!-- 🔐 로그인 -->
+    <!-- ================================================= -->
     <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>controller.LoginServlet</servlet-class>
@@ -12,7 +19,21 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
-    <!-- 회원가입 -->
+    <!-- ================================================= -->
+    <!-- 🔓 로그아웃 -->
+    <!-- ================================================= -->
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <!-- ================================================= -->
+    <!-- 🧾 회원가입 -->
+    <!-- ================================================= -->
     <servlet>
         <servlet-name>join</servlet-name>
         <servlet-class>controller.JoinServlet</servlet-class>
@@ -22,7 +43,9 @@
         <url-pattern>/join</url-pattern>
     </servlet-mapping>
 
-    <!-- 아이디 중복 -->
+    <!-- ================================================= -->
+    <!-- 🔍 아이디 중복 확인 -->
+    <!-- ================================================= -->
     <servlet>
         <servlet-name>joinCheck</servlet-name>
         <servlet-class>controller.JoinCheckServlet</servlet-class>
@@ -32,35 +55,9 @@
         <url-pattern>/join/check</url-pattern>
     </servlet-mapping>
 
-    <!-- Todo -->
-    <servlet>
-        <servlet-name>todoList</servlet-name>
-        <servlet-class>controller.TodoListServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>todoList</servlet-name>
-        <url-pattern>/todo/list</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>todoAdd</servlet-name>
-        <servlet-class>controller.TodoAddServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>todoAdd</servlet-name>
-        <url-pattern>/todo/add</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>todoDelete</servlet-name>
-        <servlet-class>controller.TodoDeleteServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>todoDelete</servlet-name>
-        <url-pattern>/todo/delete</url-pattern>
-    </servlet-mapping>
-
-    <!-- 마이페이지 -->
+    <!-- ================================================= -->
+    <!-- 📄 마이페이지 -->
+    <!-- ================================================= -->
     <servlet>
         <servlet-name>mypage</servlet-name>
         <servlet-class>controller.MyPageServlet</servlet-class>
@@ -70,53 +67,121 @@
         <url-pattern>/mypage</url-pattern>
     </servlet-mapping>
 
+    <!-- ================================================= -->
+    <!-- ✏️ 회원정보 수정 -->
+    <!-- ================================================= -->
+    <servlet>
+        <servlet-name>memberEdit</servlet-name>
+        <servlet-class>controller.MemberEditServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>memberEdit</servlet-name>
+        <url-pattern>/member/edit</url-pattern>
+    </servlet-mapping>
+
+    <!-- ================================================= -->
+    <!-- ❌ 회원 탈퇴 -->
+    <!-- ================================================= -->
+    <servlet>
+        <servlet-name>memberDelete</servlet-name>
+        <servlet-class>controller.MemberDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>memberDelete</servlet-name>
+        <url-pattern>/member/delete</url-pattern>
+    </servlet-mapping>
+
+    <!-- ================================================= -->
+    <!-- 🗂 카테고리 관리 페이지 -->
+    <!-- ================================================= -->
+    <servlet>
+        <servlet-name>categoryManage</servlet-name>
+        <servlet-class>controller.CategoryManageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>categoryManage</servlet-name>
+        <url-pattern>/category/manage</url-pattern>
+    </servlet-mapping>
+
+    <!-- ================================================= -->
+    <!-- ✏️ 카테고리 수정 -->
+    <!-- ================================================= -->
+    <servlet>
+        <servlet-name>categoryUpdate</servlet-name>
+        <servlet-class>controller.CategoryUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>categoryUpdate</servlet-name>
+        <url-pattern>/category/update</url-pattern>
+    </servlet-mapping>
+
+    <!-- ================================================= -->
+    <!-- ❌ 카테고리 삭제 -->
+    <!-- ================================================= -->
+    <servlet>
+        <servlet-name>categoryDelete</servlet-name>
+        <servlet-class>controller.CategoryDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>categoryDelete</servlet-name>
+        <url-pattern>/category/delete</url-pattern>
+    </servlet-mapping>
+
+    <!-- ================================================= -->
+    <!-- 📋 할 일 목록 -->
+    <!-- ================================================= -->
+    <servlet>
+        <servlet-name>todoList</servlet-name>
+        <servlet-class>controller.TodoListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>todoList</servlet-name>
+        <url-pattern>/todo/list</url-pattern>
+    </servlet-mapping>
+
+    <!-- ================================================= -->
+    <!-- ➕ 할 일 추가 -->
+    <!-- ================================================= -->
+    <servlet>
+        <servlet-name>todoAdd</servlet-name>
+        <servlet-class>controller.TodoAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>todoAdd</servlet-name>
+        <url-pattern>/todo/add</url-pattern>
+    </servlet-mapping>
+
+    <!-- ================================================= -->
+    <!-- ✔ 할 일 완료 / 해제 -->
+    <!-- ================================================= -->
+    <servlet>
+        <servlet-name>todoUpdate</servlet-name>
+        <servlet-class>controller.TodoUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>todoUpdate</servlet-name>
+        <url-pattern>/todo/update</url-pattern>
+    </servlet-mapping>
+
+    <!-- ================================================= -->
+    <!-- 🗑 할 일 삭제 -->
+    <!-- ================================================= -->
+    <servlet>
+        <servlet-name>todoDelete</servlet-name>
+        <servlet-class>controller.TodoDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>todoDelete</servlet-name>
+        <url-pattern>/todo/delete</url-pattern>
+    </servlet-mapping>
+
+    <!-- ================================================= -->
+    <!-- 🍪 세션 유지 (로그인 유지용) -->
+    <!-- ================================================= -->
     <session-config>
         <cookie-config>
             <path>/todolist_project</path>
         </cookie-config>
     </session-config>
-
-<!-- 카테고리 관리 -->
-<servlet>
-    <servlet-name>categoryManage</servlet-name>
-    <servlet-class>controller.CategoryManageServlet</servlet-class>
-</servlet>
-
-<servlet-mapping>
-    <servlet-name>categoryManage</servlet-name>
-    <url-pattern>/category/manage</url-pattern>
-</servlet-mapping>
-
-
-<!-- 카테고리 삭제 -->
-<servlet>
-    <servlet-name>categoryDelete</servlet-name>
-    <servlet-class>controller.CategoryDeleteServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-    <servlet-name>categoryDelete</servlet-name>
-    <url-pattern>/category/delete</url-pattern>
-</servlet-mapping>
-
-<!-- 회원 정보 수정 -->
-<servlet>
-    <servlet-name>memberEdit</servlet-name>
-    <servlet-class>controller.MemberEditServlet</servlet-class>
-</servlet>
-
-<servlet-mapping>
-    <servlet-name>memberEdit</servlet-name>
-    <url-pattern>/member/edit</url-pattern>
-</servlet-mapping>
-<!-- 카테고리 수정 -->
-<servlet>
-    <servlet-name>categoryUpdate</servlet-name>
-    <servlet-class>controller.CategoryUpdateServlet</servlet-class>
-</servlet>
-
-<servlet-mapping>
-    <servlet-name>categoryUpdate</servlet-name>
-    <url-pattern>/category/update</url-pattern>
-</servlet-mapping>
 
 </web-app>

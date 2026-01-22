@@ -39,9 +39,17 @@ if (list == null) {
     <button>수정</button>
 
     <!-- 삭제 -->
-    <a href="<%=request.getContextPath()%>/category/delete?id=<%=c.getId()%>">
+    <form action="<%=request.getContextPath()%>/category/delete"
+      method="post"
+      style="display:inline;">
+
+    <input type="hidden" name="categoryId" value="<%=c.getId()%>">
+
+    <button type="submit"
+            onclick="return confirm('삭제하시겠습니까?')">
         삭제
-    </a>
+    </button>
+</form>
 </form>
 <% } %>
 

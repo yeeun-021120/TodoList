@@ -3,6 +3,10 @@
 
 <%
 MemberDto user = (MemberDto) request.getAttribute("user");
+	if(user == null){
+        response.sendRedirect(request.getContextPath() + "/member/login.jsp");
+        return;
+    }
 %>
 
 <!DOCTYPE html>
