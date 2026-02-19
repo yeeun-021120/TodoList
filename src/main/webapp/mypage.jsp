@@ -51,11 +51,25 @@ a {
 
     <hr>
 
-    <a class="danger"
-       href="<%=request.getContextPath()%>/member/delete"
-       onclick="return confirm('정말 탈퇴하시겠습니까?');">
+    <form action="<%=request.getContextPath()%>/member/delete"
+      method="post"
+      onsubmit="return confirm('정말 탈퇴하시겠습니까?\n모든 데이터가 삭제되며 복구할 수 없습니다.');">
+
+    <button type="submit" class="danger"
+        style="
+            width:100%;
+            margin:12px 0;
+            padding:12px;
+            border:none;
+            border-radius:6px;
+            background:#e53935;
+            color:white;
+            cursor:pointer;
+        ">
         회원 탈퇴
-    </a>
+    </button>
+</form>
+
 </div>
 
 </body>

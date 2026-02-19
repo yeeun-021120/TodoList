@@ -217,4 +217,34 @@ public class TodoDao {
             e.printStackTrace();
         }
     }
+    
+    public void deleteTodo(int todoId, int memberId) {
+        String sql = "DELETE FROM todo WHERE id=? AND member_id=?";
+
+        try (
+            Connection conn = DBManager.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql)
+        ) {
+            ps.setInt(1, todoId);
+            ps.setInt(2, memberId);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void deleteByCategory(int categoryId, int memberId) {
+        String sql = "DELETE FROM todo WHERE category_id=? AND member_id=?";
+
+        try (
+            Connection conn = DBManager.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql)
+        ) {
+            ps.setInt(1, categoryId);
+            ps.setInt(2, memberId);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

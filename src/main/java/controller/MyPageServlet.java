@@ -46,7 +46,7 @@ public class MyPageServlet extends HttpServlet {
 
         // 3. 카테고리 목록
         CategoryDao catDao = new CategoryDao();
-        ArrayList<CategoryDto> categoryList = catDao.getCategoryList(memberId);
+        ArrayList<CategoryDto> categoryList = catDao.getListByMember(memberId);
 
         // 4. JSP로 전달
         request.setAttribute("mypage", mypage);

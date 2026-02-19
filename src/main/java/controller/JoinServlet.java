@@ -56,7 +56,11 @@ public class JoinServlet extends HttpServlet {
         // 4) 회원가입 insert
         dao.insertMember(username, password);
 
-        // 5) 가입 성공 -> 로그인 화면으로 이동
-        response.sendRedirect(request.getContextPath() + "/member/login.jsp");
+     // 회원가입 성공 시 로그인 페이지로 이동하면서
+     // msg=joinSuccess 상태값을 전달한다
+     response.sendRedirect(
+         request.getContextPath() + "/member/login.jsp?msg=joinSuccess"
+     );
+
     }
 }

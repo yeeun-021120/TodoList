@@ -5,18 +5,18 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import model.MemberDao;
+import model.MemberDto;
 import model.TodoDao;
 import model.CategoryDao;
-import model.MemberDto;
 
-/**
- * 회원 탈퇴 처리 서블릿
- * ------------------------------------
- * ✔ 로그인 확인
- * ✔ Todo 삭제
- * ✔ Category 삭제
- * ✔ Member 삭제
- * ✔ 세션 종료
+/*
+ * MemberDeleteServlet
+ * -----------------------
+ * 회원 탈퇴 처리
+ *  - 로그인 사용자만 가능
+ *  - Todo → Category → Member 순서로 삭제 (FK 방지)
+ *  - 세션 종료
+ *  - 로그인 페이지로 이동 + 탈퇴 완료 메시지
  */
 public class MemberDeleteServlet extends HttpServlet {
 
@@ -24,34 +24,28 @@ public class MemberDeleteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 🔐 세션 확인
         HttpSession session = request.getSession();
         MemberDto user = (MemberDto) session.getAttribute("loginUser");
 
+        // 로그인 안 한 상태면 로그인 페이지로
         if (user == null) {
-            // 로그인 안 된 상태면 로그인 페이지로
             response.sendRedirect(request.getContextPath() + "/member/login.jsp");
             return;
         }
 
         int memberId = user.getId();
 
-        // ✅ 1. Todo 삭제
-        TodoDao todoDao = new TodoDao();
-        todoDao.deleteByMember(memberId);
+        // 🔥 삭제 순서 중요 (FK 제약 때문에)
+        new TodoDao().deleteByMember(memberId);
+        new CategoryDao().deleteByMember(memberId);
+        new MemberDao().deleteMember(memberId);
 
-        // ✅ 2. Category 삭제
-        CategoryDao categoryDao = new CategoryDao();
-        categoryDao.deleteByMember(memberId);
-
-        // ✅ 3. Member 삭제
-        MemberDao memberDao = new MemberDao();
-        memberDao.deleteMember(memberId);
-
-        // ✅ 4. 세션 제거
+        // 세션 종료 (완전 로그아웃)
         session.invalidate();
 
-        // ✅ 5. 로그인 화면으로 이동
-        response.sendRedirect(request.getContextPath() + "/member/login.jsp");
+        // 탈퇴 완료 메시지와 함께 로그인 페이지로
+        response.sendRedirect(
+            request.getContextPath() + "/member/login.jsp?msg=deleted"
+        );
     }
 }

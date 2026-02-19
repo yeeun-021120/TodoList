@@ -24,6 +24,8 @@ MemberDto user = (MemberDto) request.getAttribute("user");
 <hr>
 
 <!-- 비밀번호 변경 -->
+
+
 <form action="<%=request.getContextPath()%>/member/edit" method="post">
 
     <p>
@@ -45,14 +47,33 @@ MemberDto user = (MemberDto) request.getAttribute("user");
 
 <hr>
 
-<!-- 회원 탈퇴 -->
-<form action="<%=request.getContextPath()%>/member/delete"
-      method="post"
-      onsubmit="return confirm('정말 탈퇴하시겠습니까?');">
-    <button style="color:red;">회원 탈퇴</button>
-</form>
+<%
+    /*
+     * 비밀번호 변경 메시지 처리
+     * -----------------------------
+     * changed : 변경 성공
+     * wrongPw : 현재 비밀번호 불일치
+     */
+    String msg = request.getParameter("msg");
 
-<hr>
+    if ("changed".equals(msg)) {
+%>
+    <script>
+        alert("비밀번호가 변경되었습니다.");
+    </script>
+<%
+    } else if ("wrongPw".equals(msg)) {
+%>
+    <script>
+        alert("현재 비밀번호가 일치하지 않습니다.");
+    </script>
+<%
+    }
+%>
+
+
+
+
 <a href="<%=request.getContextPath()%>/mypage">← 마이페이지</a>
 
 </body>

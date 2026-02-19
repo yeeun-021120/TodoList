@@ -37,7 +37,7 @@ if (list == null) {
            value="<%=c.getColor()%>">
 
     <button>수정</button>
-
+</form>
     <!-- 삭제 -->
     <form action="<%=request.getContextPath()%>/category/delete"
       method="post"
@@ -49,7 +49,6 @@ if (list == null) {
             onclick="return confirm('삭제하시겠습니까?')">
         삭제
     </button>
-</form>
 </form>
 <% } %>
 

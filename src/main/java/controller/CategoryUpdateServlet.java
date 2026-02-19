@@ -23,7 +23,7 @@ public class CategoryUpdateServlet extends HttpServlet {
 
         // 2. DB 수정
         CategoryDao dao = new CategoryDao();
-        dao.update(id, name, color);
+        dao.updateCategory(id, name, color);
 
         // 3. 다시 관리 페이지로
         response.sendRedirect(request.getContextPath() + "/category/manage");

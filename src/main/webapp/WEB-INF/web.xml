@@ -102,7 +102,19 @@
         <servlet-name>categoryManage</servlet-name>
         <url-pattern>/category/manage</url-pattern>
     </servlet-mapping>
-
+	
+	<!-- ================================================= -->
+	<!-- ➕ 카테고리 추가 -->
+	<!-- ================================================= -->
+	<servlet>
+    	<servlet-name>categoryAdd</servlet-name>
+    	<servlet-class>controller.CategoryAddServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>categoryAdd</servlet-name>
+    	<url-pattern>/category/add</url-pattern>
+	</servlet-mapping>
+	
     <!-- ================================================= -->
     <!-- ✏️ 카테고리 수정 -->
     <!-- ================================================= -->

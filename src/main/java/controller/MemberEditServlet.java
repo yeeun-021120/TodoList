@@ -13,6 +13,10 @@ import model.MemberDto;
  * 회원정보 수정 페이지
  *  - GET  : 수정 페이지 이동
  *  - POST : 비밀번호 변경 처리
+ *
+ * msg 파라미터 규칙
+ *  - changed : 비밀번호 변경 성공
+ *  - wrongPw : 현재 비밀번호 불일치
  */
 public class MemberEditServlet extends HttpServlet {
 
@@ -49,22 +53,26 @@ public class MemberEditServlet extends HttpServlet {
             return;
         }
 
+        request.setCharacterEncoding("UTF-8");
+
         String currentPw = request.getParameter("currentPw");
         String newPw = request.getParameter("newPw");
 
         MemberDao dao = new MemberDao();
 
-        // 현재 비밀번호 확인
+        // ❌ 현재 비밀번호가 틀린 경우
         if (!dao.checkPassword(user.getId(), currentPw)) {
-            request.setAttribute("error", "현재 비밀번호가 틀렸습니다.");
-            request.getRequestDispatcher("/member/memberEdit.jsp")
-                   .forward(request, response);
+            response.sendRedirect(
+                request.getContextPath() + "/member/edit?msg=wrongPw"
+            );
             return;
         }
 
-        // 비밀번호 변경
+        // ⭕ 현재 비밀번호가 맞는 경우 → 비밀번호 변경
         dao.updatePassword(user.getId(), newPw);
 
-        response.sendRedirect(request.getContextPath() + "/mypage");
+        response.sendRedirect(
+            request.getContextPath() + "/member/edit?msg=changed"
+        );
     }
 }

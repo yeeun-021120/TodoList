@@ -64,8 +64,7 @@ public class MemberDao {
      * 회원가입
      * =========================== */
     public void insertMember(String username, String password) {
-        String sql = "INSERT INTO member VALUES (member_seq.NEXTVAL, ?, ?)";
-
+    	String sql = "INSERT INTO member (id, username, password) VALUES (member_seq.NEXTVAL, ?, ?)";
         try (
             Connection conn = DBManager.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql)
@@ -99,7 +98,8 @@ public class MemberDao {
         }
         return false;
     }
-
+    
+    
     /* ===========================
      * 비밀번호 변경
      * =========================== */
@@ -117,7 +117,7 @@ public class MemberDao {
             e.printStackTrace();
         }
     }
-
+    
     /* ===========================
      * 회원 탈퇴 (회원만 삭제)
      * =========================== */
@@ -134,4 +134,6 @@ public class MemberDao {
             e.printStackTrace();
         }
     }
+    
+    
 }

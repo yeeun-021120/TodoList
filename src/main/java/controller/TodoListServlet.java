@@ -49,7 +49,7 @@ public class TodoListServlet extends HttpServlet {
                 todoDao.getMonthlyHeatmap(user.getId(), month);
 
         ArrayList<CategoryDto> categoryList =
-                categoryDao.getCategoryList(user.getId());
+                categoryDao.getListByMember(user.getId());
 
         // 5️⃣ JSP로 전달
         request.setAttribute("day", day);

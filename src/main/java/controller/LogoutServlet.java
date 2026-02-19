@@ -33,8 +33,10 @@ public class LogoutServlet extends HttpServlet {
         jsid.setPath(request.getContextPath());
         jsid.setMaxAge(0);
         response.addCookie(jsid);
-
-        // 3) 로그인 화면으로
-        response.sendRedirect(request.getContextPath() + "/member/login.jsp");
+        
+        // 로그아웃 완료 메시지와 함께 로그인 페이지로 이동
+        response.sendRedirect(
+            request.getContextPath() + "/member/login.jsp?msg=logout"
+        );
     }
 }

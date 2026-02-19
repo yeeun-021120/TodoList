@@ -9,14 +9,12 @@ import model.MemberDto;
 
 public class CategoryAddServlet extends HttpServlet {
 
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
 
-        HttpSession session = request.getSession();
-        MemberDto user = (MemberDto) session.getAttribute("loginUser");
+        MemberDto user = (MemberDto) request.getSession().getAttribute("loginUser");
 
         if (user == null) {
             response.sendRedirect(request.getContextPath() + "/member/login.jsp");
@@ -26,8 +24,7 @@ public class CategoryAddServlet extends HttpServlet {
         String name = request.getParameter("name");
         String color = request.getParameter("color");
 
-        CategoryDao dao = new CategoryDao();
-        dao.insertCategory(user.getId(), name, color);
+        new CategoryDao().insertCategory(user.getId(), name, color);
 
         response.sendRedirect(request.getContextPath() + "/category/manage");
     }

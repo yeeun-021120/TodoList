@@ -82,6 +82,40 @@ a { text-decoration:none; }
         <a href="<%=request.getContextPath()%>/member/join.jsp">회원가입</a>
     </div>
 </div>
+<%
+    /*
+     * login.jsp 메시지 처리 영역
+     * ----------------------------------------
+     * msg 파라미터 값에 따라 알림 메시지를 출력한다.
+     *
+     * joinSuccess : 회원가입 완료
+     * logout      : 로그아웃 완료
+     * deleted     : 회원 탈퇴 완료
+     */
+
+    String msg = request.getParameter("msg");
+
+    if ("joinSuccess".equals(msg)) {
+%>
+        <script>
+            alert("회원가입이 완료되었습니다. 로그인해주세요!");
+        </script>
+<%
+    } else if ("logout".equals(msg)) {
+%>
+        <script>
+            alert("로그아웃이 되었습니다.");
+        </script>
+<%
+    } else if ("deleted".equals(msg)) {
+%>
+        <script>
+            alert("회원 탈퇴가 완료되었습니다.");
+        </script>
+<%
+    }
+%>
+
 
 </body>
 </html>
